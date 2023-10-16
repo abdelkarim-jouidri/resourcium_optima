@@ -17,13 +17,19 @@ public class SignupServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
-        String pwd = request.getParameter("pwd");
-        User user = new User(fname, lname, pwd);
-        UserDao userDao = new UserDao(Persistence.createEntityManagerFactory("resourcium_optima"));
-        userDao.save(user);
-        response.sendRedirect("/success.jsp");
+        try {
+            String fname = request.getParameter("fname");
+            String lname = request.getParameter("lname");
+            String pwd = request.getParameter("pwd");
+            User user = new User(fname, lname, pwd);
+            UserDao userDao = new UserDao(Persistence.createEntityManagerFactory("resourcium_optima"));
+            userDao.save(user);
+            response.sendRedirect(request.getContextPath()+"/success.jsp");
+        }catch (Exception e){
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
+
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
