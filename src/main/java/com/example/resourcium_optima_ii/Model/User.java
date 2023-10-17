@@ -16,17 +16,16 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
 
-    private String hashedPassword;
+    private String password;
 
     public User(){
 
     }
 
     public User( String firstName, String lastName, String password) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.hashedPassword = hashedPassword;
+        this.password = hashPassword(password);
     }
 
     public long getId() {
@@ -42,27 +41,27 @@ public class User implements Serializable {
     }
 
     public String getHashedPassword() {
-        return hashedPassword;
+        return password;
     }
 
     public void setHashedPassword(String password){
-            this.hashedPassword = hashPassword(password);
+            this.password = hashPassword(password);
     }
 
-    public String hashPassword(String pw){
+    public static String hashPassword(String pw){
         try {
-
-            MessageDigest md = MessageDigest.getInstance("SH-256");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(pw.getBytes());
-            byte[] encodedHash = md.digest();
-            StringBuilder hexPassword = new StringBuilder();
-
-            for (byte b : encodedHash){
-                hexPassword.append(String.format("%02x", b));
+            byte[] bytes = md.digest();
+            StringBuilder hashedPassword = new StringBuilder();
+            for(byte b : bytes){
+                hashedPassword.append(String.format("%02x",b));
             }
-        return hashedPassword.toString();
+            return hashedPassword.toString();
+
         }catch (NoSuchAlgorithmException e){
             throw new RuntimeException("No such algorithm exists : "+e);
         }
     }
+
 }
