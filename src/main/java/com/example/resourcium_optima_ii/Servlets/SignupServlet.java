@@ -22,13 +22,17 @@ public class SignupServlet extends HttpServlet {
             String lname = request.getParameter("lname");
             String pwd = request.getParameter("pwd");
             User user = new User(fname, lname, pwd);
-            UserDao userDao = new UserDao(Persistence.createEntityManagerFactory("resourcium_optima"));
+            EntityManagerFactory resourciumOptima = Persistence.createEntityManagerFactory("resourcium_optima");
+            UserDao userDao = new UserDao(resourciumOptima);
             userDao.save(user);
             response.sendRedirect(request.getContextPath()+"/success.jsp");
         }catch (Exception e){
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/error.jsp");
 
+        }
+        finally {
+            System.out.println("this is from the finally block");
         }
     }
 

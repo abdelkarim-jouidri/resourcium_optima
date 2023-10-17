@@ -5,7 +5,7 @@ import java.io.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet("/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
 
@@ -21,6 +21,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+        System.out.println("yoooooooooooooooooooooooooooooooo");
     }
 
     public void destroy() {
