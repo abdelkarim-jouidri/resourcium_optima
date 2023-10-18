@@ -20,8 +20,9 @@ public class SignupServlet extends HttpServlet {
         try {
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
+            String email = request.getParameter("email");
             String pwd = request.getParameter("pwd");
-            User user = new User(fname, lname, pwd);
+            User user = new User(fname, lname,email, pwd);
             EntityManagerFactory resourciumOptima = Persistence.createEntityManagerFactory("resourcium_optima");
             UserDao userDao = new UserDao(resourciumOptima);
             userDao.save(user);

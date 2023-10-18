@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("resourcium_optima");
 
-        User user = new User("abdelkrim","jouidri", "abc");
-        UserDao userDao = new UserDao(emf);
-        userDao.save(user);
+//        User user = new User("abdelkrim","jouidri", "abc");
+//        UserDao userDao = new UserDao(emf);
+//        userDao.save(user);
     }
 }

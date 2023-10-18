@@ -15,21 +15,26 @@ public class User implements Serializable {
 
     private String firstName;
     private String lastName;
-
+    private String email;
     private String password;
 
     public User(){
 
     }
 
-    public User( String firstName, String lastName, String password) {
+    public User( String firstName, String lastName,String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.password = hashPassword(password);
     }
 
     public long getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getFirstName() {
@@ -42,6 +47,10 @@ public class User implements Serializable {
 
     public String getHashedPassword() {
         return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setHashedPassword(String password){
@@ -62,6 +71,21 @@ public class User implements Serializable {
         }catch (NoSuchAlgorithmException e){
             throw new RuntimeException("No such algorithm exists : "+e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public boolean verifyPassword(String password){
+        return this.getHashedPassword().equals(hashPassword(password));
     }
 
 }

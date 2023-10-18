@@ -65,9 +65,9 @@
 <body>
 <h2>Sign In</h2>
 
-<form action="signin" method="post">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required><br>
+<form action="login" method="post">
+  <label for="email">email:</label>
+  <input type="email" id="email" name="email" required><br>
 
   <label for="password">Password:</label>
   <input type="password" id="password" name="password" required><br>
@@ -76,5 +76,8 @@
 </form>
 
 <p>Don't have an account? <a href="${pageContext.request.contextPath}/signup">Sign Up</a></p>
+<h1 style="color: red">${requestScope.message}</h1>
+<h1 style="color: red">${requestScope.invalidPasswordMessage}</h1>
+
 </body>
 </html>

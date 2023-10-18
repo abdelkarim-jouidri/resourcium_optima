@@ -1,9 +1,7 @@
 package com.example.resourcium_optima_ii.DAO;
 
 import com.example.resourcium_optima_ii.Model.User;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
 
 public class UserDao {
     private final EntityManagerFactory entityManagerFactory;
@@ -27,6 +25,22 @@ public class UserDao {
             e.printStackTrace();
         }finally {
             entityManager.close();
+        }
+    }
+
+    public User getUserByEmail(String email){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            User user = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                    .setParameter("email", email).getSingleResult();
+            return user;
+        }catch (NoResultException e){
+            System.out.println("There is no such User with this email address.");
+            return null;
+        }
+        catch (NonUniqueResultException e ){
+            System.out.println("More than one unique user instance was found with this email address");
+            return null;
         }
     }
 }
