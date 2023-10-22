@@ -19,16 +19,26 @@
             height: 100vh;
             margin: 0;
         }
-        h1 {
+        h1{
             text-align: center;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            align-self: center;
         }
     </style>
 </head>
 <body>
-<div>
+<div class="container">
+    <img style="margin-bottom: 20px" width="50%" src="utils/pictures/Logo.png">
     <h1>Welcome to the Home Page</h1>
     <h3 style="color: #7ba7dc; display: inline-block">Credentials : </h3>
-    <p>email : ${requestScope.homePageMessage}</p>
+    <p>email : ${requestScope.userByEmail.getEmail()}</p>
+    <p>email : ${requestScope.userByEmail.getFirstName()}</p>
 </div>
 </body>
 </html>

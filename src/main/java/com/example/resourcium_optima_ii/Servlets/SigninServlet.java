@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -21,7 +22,9 @@ public class SigninServlet extends HttpServlet {
         User userByEmail = userDao.getUserByEmail(email);
         if (userByEmail != null){
             if(userByEmail.verifyPassword(pwd)){
-                req.setAttribute("homePageMessage", userByEmail.getEmail());
+                req.setAttribute("userByEmail", userByEmail);
+                HttpSession session = req.getSession();
+                session.setAttribute("email", email);
                 req.getRequestDispatcher("home.jsp").forward(req, resp);
             }
             else {
@@ -29,7 +32,7 @@ public class SigninServlet extends HttpServlet {
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
             }
         }
-        if (userByEmail == null){
+        else{
             System.out.println("No such user with these credentials");
 //            req.setAttribute("message", "No such user with these credentials");
 //            req.getRequestDispatcher("login.jsp").forward(req,resp);
