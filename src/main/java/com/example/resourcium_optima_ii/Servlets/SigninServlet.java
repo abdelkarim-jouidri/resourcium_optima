@@ -25,7 +25,7 @@ public class SigninServlet extends HttpServlet {
                 req.setAttribute("userByEmail", userByEmail);
                 HttpSession session = req.getSession();
                 session.setAttribute("email", email);
-                req.getRequestDispatcher("home.jsp").forward(req, resp);
+                resp.sendRedirect(req.getContextPath() + "/home");
             }
             else {
                 req.setAttribute("invalidPasswordMessage", "invalid password");
@@ -34,8 +34,8 @@ public class SigninServlet extends HttpServlet {
         }
         else{
             System.out.println("No such user with these credentials");
-//            req.setAttribute("message", "No such user with these credentials");
-//            req.getRequestDispatcher("login.jsp").forward(req,resp);
+            req.setAttribute("message", "No such user with these credentials");
+            req.getRequestDispatcher("login.jsp").forward(req,resp);
         }
 
     }

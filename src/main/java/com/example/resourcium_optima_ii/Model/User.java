@@ -2,6 +2,7 @@ package com.example.resourcium_optima_ii.Model;
 
 import jakarta.persistence.*;
 
+import javax.management.relation.Role;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,13 +11,16 @@ import java.security.NoSuchAlgorithmException;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User(){
 
@@ -86,6 +90,13 @@ public class User implements Serializable {
 
     public boolean verifyPassword(String password){
         return this.getHashedPassword().equals(hashPassword(password));
+    }
+
+
+    public enum Role{
+        ADMIN,
+        PERSONNEL,
+        TECHNICIAN
     }
 
 }
