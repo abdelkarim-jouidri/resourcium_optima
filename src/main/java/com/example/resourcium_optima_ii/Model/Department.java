@@ -2,6 +2,8 @@ package com.example.resourcium_optima_ii.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Department {
     @Id
@@ -11,8 +13,8 @@ public class Department {
     private String name;
     private String description;
 
-    @OneToMany
-    private Employee employee;
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
     public Department() {
     }

@@ -19,7 +19,15 @@ public class Reservation {
 
     private LocalDate reservationDate;
 
+    @Enumerated(EnumType.STRING)
+    private ReservationType reservationType;
+
     public Reservation() {
     }
 
+
+    private enum ReservationType{
+        TASK_ASSIGNMENT,
+        EQUIPMENT_ALLOCATION
+    }
 }

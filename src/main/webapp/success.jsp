@@ -32,6 +32,6 @@
 
 <p>Congratulations, your account has been created successfully.</p>
 
-<p>Go to <a href="${pageContext.request.contextPath}/signin">Sign In</a> page.</p>
+<p>Go to <a href="${pageContext.request.contextPath}/login">Sign In</a> page.</p>
 </body>
 </html>
