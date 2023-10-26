@@ -31,9 +31,19 @@ public class AddEmployee extends HttpServlet {
         int depart_ID = Integer.parseInt(req.getParameter("department"));
         Department department = departmentDao.getDepartmentByID(depart_ID);
         //constructing the Employee object
-        Employee employee = new Employee();
-        employee
         String name = req.getParameter("name");
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setDepartment(department);
+        if(employeeDao.save(employee) == true){
+            System.out.println("successfully added");
+            req.setAttribute("successMessage", "The new employee has been added successfully");
+        }
+        else {
+            System.out.println("Error while trying to add the employee");
+            req.getSession().setAttribute("errorMessage", "something went wrong !!");
+        }
+        req.getRequestDispatcher("/AddEmployee.jsp").forward(req, resp);
 
     }
 }

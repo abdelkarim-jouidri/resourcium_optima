@@ -22,7 +22,13 @@ public class Employee {
         return id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public Department getDepartment() {
         return department;

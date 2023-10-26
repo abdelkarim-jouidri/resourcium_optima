@@ -57,7 +57,6 @@ public class DepartmentDao {
 
     public Department getDepartmentByID(int ID){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
         return entityManager.find(Department.class, ID);
     }
 

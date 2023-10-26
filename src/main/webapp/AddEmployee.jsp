@@ -53,7 +53,16 @@
 
     <section id="reservations" class="visible section-layout">
       <h2>Add Employee</h2>
-
+      <c:if test="${not empty requestScope.successMessage}">
+        <div style="color: green; background: #dbe7db; text-align: center; width: 100%; padding: 10px; margin-bottom: 5px">
+            ${requestScope.successMessage}
+        </div>
+      </c:if>
+      <c:if test="${not empty requestScope.errorMessage}">
+        <div style="color: red; background: #ecdada; text-align: center; width: 100%; padding: 10px; margin-bottom: 5px">
+            ${requestScope.errorMessage}
+        </div>
+      </c:if>
       <form action="${pageContext.request.contextPath}/home/employees/add" method="post">
         <!-- Name -->
         <label for="name">Name:</label>

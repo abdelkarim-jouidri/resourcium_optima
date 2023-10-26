@@ -57,5 +57,37 @@ public class EmployeeDao {
         }
     }
 
+    public boolean delete(Employee employee) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            // Load the employee into the persistence context
+            Employee managedEmployee = entityManager.find(Employee.class, employee.getId());
+            if (managedEmployee != null) {
+                entityManager.remove(managedEmployee);
+                transaction.commit();
+                return true;
+            } else {
+                throw new RuntimeException("Employee not found for deletion");
+            }
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Error saving employee: " + e.getMessage(), e);
+        } finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
+        }
+    }
+
+    public Employee getEmployeeById(int ID){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Employee employee = entityManager.find(Employee.class, ID);
+        return employee;
+    }
 
 }

@@ -29,18 +29,18 @@ public class SigninServlet extends HttpServlet {
             }
             else {
                 req.setAttribute("invalidPasswordMessage", "invalid password");
-                req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
             }
         }
         else{
             System.out.println("No such user with these credentials");
             req.setAttribute("message", "No such user with these credentials");
-            req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
+            req.getRequestDispatcher("/login.jsp").forward(req,resp);
         }
 
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }
