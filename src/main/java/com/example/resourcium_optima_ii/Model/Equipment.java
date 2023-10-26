@@ -22,12 +22,31 @@ public class Equipment {
     public Equipment() {
     }
 
-    public void setAvailability(Availability availability) {
-        this.availability = availability;
+    public void setAvailability(String availability) {
+        switch (availability) {
+            case "AVAILABLE":
+                this.availability = Availability.AVAILABLE;
+                break;
+            case "IN_USE":
+                this.availability = Availability.IN_USE;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid availability: " + availability);
+        }
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(String type) {
+
+        switch (type) {
+            case "JETABLE":
+                this.type = Type.JETABLE;
+                break;
+            case "NON_JETABLE":
+                this.type = Type.NON_JETABLE;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid type: " + type);
+        }
     }
 
 
