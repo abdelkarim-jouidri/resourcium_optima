@@ -26,10 +26,10 @@ public class SignupServlet extends HttpServlet {
             EntityManagerFactory resourciumOptima = Persistence.createEntityManagerFactory("resourcium_optima");
             UserDao userDao = new UserDao(resourciumOptima);
             userDao.save(user);
-            response.sendRedirect(request.getContextPath()+"/success.jsp");
+            response.sendRedirect(request.getContextPath()+"/WEB-INF/success.jsp");
         }catch (Exception e){
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            response.sendRedirect(request.getContextPath() + "/WEB-INF/error.jsp");
 
         }
         finally {
@@ -39,7 +39,7 @@ public class SignupServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/signup.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/signup.jsp").forward(request, response);
     }
 
 

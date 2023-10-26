@@ -56,7 +56,7 @@
     </style>
 </head>
 <body>
-<h2>Sign Upe</h2>
+<h2>Sign Up</h2>
 
 <form action="signup" method="post">
     <label for="fname">First Name:</label>
@@ -74,6 +74,6 @@
     <input type="submit" value="Sign Up">
 </form>
 
-<p>Already have an account? <a href="${pageContext.request.contextPath}/signin">Sign In</a></p>
+<p>Already have an account? <a href="${pageContext.request.contextPath}/login">Sign In</a></p>
 </body>
 </html>

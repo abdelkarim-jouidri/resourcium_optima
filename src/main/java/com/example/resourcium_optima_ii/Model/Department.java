@@ -18,4 +18,30 @@ public class Department {
 
     public Department() {
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", employees=" + employees +
+                '}';
+    }
 }

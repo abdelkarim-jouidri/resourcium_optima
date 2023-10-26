@@ -29,13 +29,13 @@ public class SigninServlet extends HttpServlet {
             }
             else {
                 req.setAttribute("invalidPasswordMessage", "invalid password");
-                req.getRequestDispatcher("login.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
             }
         }
         else{
             System.out.println("No such user with these credentials");
             req.setAttribute("message", "No such user with these credentials");
-            req.getRequestDispatcher("login.jsp").forward(req,resp);
+            req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
         }
 
     }
