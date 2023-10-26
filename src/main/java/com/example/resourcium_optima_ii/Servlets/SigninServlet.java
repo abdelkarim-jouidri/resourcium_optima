@@ -25,6 +25,7 @@ public class SigninServlet extends HttpServlet {
                 req.setAttribute("userByEmail", userByEmail);
                 HttpSession session = req.getSession();
                 session.setAttribute("email", email);
+                session.setAttribute("loggedInUser", userByEmail);
                 resp.sendRedirect(req.getContextPath() + "/home");
             }
             else {

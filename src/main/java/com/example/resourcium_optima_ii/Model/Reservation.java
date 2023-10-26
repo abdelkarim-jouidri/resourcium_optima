@@ -71,8 +71,8 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public void setReservationType(ReservationType reservationType) {
-        this.reservationType = reservationType;
+    public void setReservationType() {
+        this.reservationType = ReservationType.EQUIPMENT_ALLOCATION;
     }
 
     public void setName(String name) {

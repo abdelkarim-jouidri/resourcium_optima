@@ -32,8 +32,8 @@
               <td>${reservation.getName()}</td>
               <td>${reservation.getReservationDate()}</td>
               <td>${reservation.getReservationType()}</td>
-              <td>${reservation.getEquipment().getName}</td>
-              <td>${reservation.getUser().getName()}</td>
+              <td>${reservation.getEquipment().getName()}</td>
+              <td>${reservation.getUser().getFirstName()}</td>
               <td>
                 <form action="${pageContext.request.contextPath}/home/reservations/update" method="post" style="display: inline;">
                   <input type="hidden" value="update" name="action">

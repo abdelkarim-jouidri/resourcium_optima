@@ -1,5 +1,6 @@
 package com.example.resourcium_optima_ii.DAO;
 
+import com.example.resourcium_optima_ii.Model.Department;
 import com.example.resourcium_optima_ii.Model.Employee;
 import com.example.resourcium_optima_ii.Model.Equipment;
 import jakarta.persistence.EntityManager;
@@ -54,6 +55,11 @@ public class EquipmentDao {
                 entityManager.close();
             }
         }
+    }
+
+    public Equipment getEquipmentById(int ID){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(Equipment.class, ID);
     }
 
 }
