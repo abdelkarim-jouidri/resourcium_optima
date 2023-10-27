@@ -19,8 +19,9 @@ public class SigninServlet extends HttpServlet {
         String email = req.getParameter("email");
         String pwd = req.getParameter("password");
         UserDao userDao = new UserDao(Persistence.createEntityManagerFactory("resourcium_optima"));
-        User userByEmail = userDao.getUserByEmail(email);
-        if (userByEmail != null){
+        System.out.println("does a user with this email exists : "+ userDao.userByEmailExists(email));
+        if (userDao.userByEmailExists(email)){
+            User userByEmail = userDao.getUserByEmail(email);
             if(userByEmail.verifyPassword(pwd)){
                 req.setAttribute("userByEmail", userByEmail);
                 HttpSession session = req.getSession();

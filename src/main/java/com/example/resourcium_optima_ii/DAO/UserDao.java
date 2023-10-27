@@ -43,4 +43,27 @@ public class UserDao {
             return null;
         }
     }
+
+    public boolean userByEmailExists(String email){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try{
+            transaction.begin();
+            String hql = "SELECT COUNT(u) FROM User u WHERE u.email = :email";
+            Query query = entityManager.createQuery(hql);
+            query.setParameter("email", email);
+            Long count = (Long) query.getSingleResult();
+            transaction.commit();
+            return count>0;
+        }catch (Exception e){
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }finally {
+            entityManager.close();
+        }
+    }
+
 }

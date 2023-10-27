@@ -49,6 +49,7 @@ public class AddAllocationServlet extends HttpServlet {
         reservation.setReservationDate(LocalDate.now());
         reservation.setUser(currentUser);
         reservationDao.save(reservation);
-
+        req.setAttribute("reservations", reservationDao.getAllReservations());
+        req.getRequestDispatcher("/Reservations.jsp").forward(req,resp);
     }
 }
